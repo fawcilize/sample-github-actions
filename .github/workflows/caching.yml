@@ -1,21 +1,8 @@
 name: separate-jobs 
 
 on:
-  workflow_dispatch:
-
-
-      #   env:
-      #     super_secret: ${{ secrets.SUPERSECRET }}
-      #   needs:
-      #     setup_dependencies
-      
-      # services:
-      #   postgres:
-      #     image: postgres
-     
-      # env:
-      #   POSTGRES_HOST: postgres
-      #   POSTGRES_PORT: 5432
+  pull_request:
+    branches: [ main ]
 
 jobs:
   unit-tests:
@@ -26,6 +13,14 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v1
+
+      - name: use cache 
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         run: npm install
@@ -47,6 +42,14 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v1
+
+      - name: use cache 
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         run: npm install
