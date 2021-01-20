@@ -4,7 +4,9 @@
   "description": "An example of how to use GitHub actions as a continuous integration system",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest",
+    "test:integration": "sleep 1 && jest"
   },
   "repository": {
     "type": "git",
