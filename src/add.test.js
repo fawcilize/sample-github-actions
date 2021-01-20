@@ -12,4 +12,8 @@ describe("add", () => {
     const result = add(1, -1);
     expect(result).toEqual(0);
   });
+
+  test("failing test", () => {
+    fail("This test will fail.");
+  });
 });
