@@ -1,4 +1,4 @@
-name: dependencies-test 
+name: separate-jobs 
 
 on:
   pull_request:
